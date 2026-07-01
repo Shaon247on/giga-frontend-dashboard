@@ -1,11 +1,19 @@
 import { cn } from "@/lib/utils";
 import type { Status } from "@/types";
 
-const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: string }> = {
+const STATUS_STYLES: Record<
+  Status,
+  { label: string; classes: string; dot: string }
+> = {
   active: {
     label: "Active",
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
     dot: "bg-emerald-500",
+  },
+  inactive: {
+    label: "Active",
+    classes: "bg-gray-50 text-gray-600 border-gray-200",
+    dot: "bg-gray-500",
   },
   reviewed: {
     label: "Reviewed",
@@ -62,10 +70,13 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
       className={cn(
         "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border",
         config.classes,
-        className
+        className,
       )}
     >
-      <span className={cn("w-1.5 h-1.5 rounded-full", config.dot)} aria-hidden="true" />
+      <span
+        className={cn("w-1.5 h-1.5 rounded-full", config.dot)}
+        aria-hidden="true"
+      />
       {config.label}
     </span>
   );

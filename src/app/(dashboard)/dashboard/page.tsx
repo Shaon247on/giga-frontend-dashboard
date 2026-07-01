@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { DashboardView, DashboardSkeleton, fetchDashboardData } from "@/features/dashboard";
+import { DashboardView, DashboardSkeleton, fetchDashboardData } from "@/features/supervisor/dashboard";
 
 // This is a Server Component — data fetching happens server-side
 // When real API exists: swap fetchDashboardData() for a service call

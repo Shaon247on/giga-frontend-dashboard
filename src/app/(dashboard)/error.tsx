@@ -14,7 +14,7 @@ export default function DashboardError({ error, reset }: DashboardErrorProps) {
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full min-h-[400px] p-8 text-center">
+    <div className="flex flex-col items-center justify-center h-full min-h-100 p-8 text-center">
       <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-4">
         <AlertTriangle className="w-7 h-7 text-red-500" strokeWidth={1.8} />
       </div>

@@ -1,4 +1,4 @@
-import { DashboardSkeleton } from "@/features/dashboard";
+import { DashboardSkeleton } from "@/features/supervisor/dashboard";
 
 export default function DashboardLoading() {
   return <DashboardSkeleton />;

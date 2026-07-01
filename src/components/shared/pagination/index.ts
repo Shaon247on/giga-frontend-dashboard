@@ -1,0 +1,1 @@
+export { GlobalPagination } from "./GlobalPagination";

@@ -14,6 +14,7 @@ export interface PageMeta {
 
 export type Status =
   | "active"
+  | "inactive"
   | "reviewed"
   | "pending"
   | "approved"

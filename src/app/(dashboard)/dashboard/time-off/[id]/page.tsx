@@ -4,7 +4,7 @@ import {
   TimeOffDetailView,
   TimeOffDetailSkeleton,
   fetchTimeOffRequest,
-} from "@/features/time-off";
+} from "@/features/supervisor/time-off";
 
 interface TimeOffDetailPageProps {
   params: Promise<{ id: string }>;

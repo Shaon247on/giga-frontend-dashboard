@@ -1,5 +1,9 @@
 export const ROUTES = {
   home: "/",
+  signIn: "/sign-in",
+  forgotPassword: "/forgot-password",
+  verifyOtp: "/verify-otp",
+  resetPassword: "/reset-password",
   dashboard: "/dashboard",
   attendance: "/dashboard/attendance",
   attendanceRecord: (id: string) => `/dashboard/attendance/${id}`,

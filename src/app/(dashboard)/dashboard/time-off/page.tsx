@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { TimeOffView, TimeOffSkeleton, fetchTimeOffPageData } from "@/features/time-off";
-import type { TimeOffFilter } from "@/features/time-off";
+import { TimeOffView, TimeOffSkeleton, fetchTimeOffPageData } from "@/features/supervisor/time-off";
+import type { TimeOffFilter } from "@/features/supervisor/time-off";
 
 interface TimeOffPageProps {
   searchParams: Promise<{ filter?: string; request?: string }>;

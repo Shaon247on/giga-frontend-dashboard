@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { SettingsView, SettingsSkeleton, fetchUserProfile } from "@/features/settings";
+import { SettingsView, SettingsSkeleton, fetchUserProfile } from "@/features/supervisor/settings";
 
 async function SettingsContent() {
   const profile = await fetchUserProfile();

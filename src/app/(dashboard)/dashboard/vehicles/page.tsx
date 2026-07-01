@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { VehiclesView, VehiclesSkeleton, fetchVehiclesPageData } from "@/features/vehicles";
+import { VehiclesView, VehiclesSkeleton, fetchVehiclesPageData } from "@/features/supervisor/vehicles";
 
 interface VehiclesPageProps {
   searchParams: Promise<{ vehicle?: string }>;

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
-import { AttendanceView, fetchAttendancePageData } from "@/features/attendance";
-import type { AttendanceFilter } from "@/features/attendance";
+import { AttendanceView, fetchAttendancePageData } from "@/features/supervisor/attendance";
+import type { AttendanceFilter } from "@/features/supervisor/attendance";
 
 interface AttendancePageProps {
   searchParams: Promise<{ filter?: string; record?: string }>;

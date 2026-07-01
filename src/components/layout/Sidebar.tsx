@@ -39,7 +39,7 @@ export function Sidebar() {
           "lg:static lg:z-auto lg:w-full lg:translate-x-0 lg:backdrop-blur-none",
           // Mobile: slide in/out
           "transition-transform duration-300 ease-in-out",
-          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+          isOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0",
         )}
         aria-label="Main navigation"
       >
@@ -54,9 +54,6 @@ export function Sidebar() {
             <div className="min-w-0">
               <p className="text-[15px] font-bold text-[#135CC8] leading-tight tracking-tight truncate">
                 GTS&apos;S FINEST
-              </p>
-              <p className="text-[11px] text-[#667085] font-medium leading-tight truncate mt-0.5">
-                Supervisor / Manager
               </p>
             </div>
           </Link>
@@ -86,14 +83,14 @@ export function Sidebar() {
                   "transition-all duration-200 ease-in-out",
                   active
                     ? "bg-[#135CC8] text-white shadow-sm shadow-blue-200"
-                    : "text-[#0F172B] hover:bg-slate-200/70 hover:text-[#135CC8]"
+                    : "text-[#0F172B] hover:bg-slate-200/70 hover:text-[#135CC8]",
                 )}
                 aria-current={active ? "page" : undefined}
               >
                 <Icon
                   className={cn(
                     "w-4.5 h-4.5 shrink-0",
-                    active ? "text-white" : "text-[#667085]"
+                    active ? "text-white" : "text-[#667085]",
                   )}
                   strokeWidth={active ? 2.2 : 1.8}
                 />
@@ -118,14 +115,14 @@ export function Sidebar() {
                   "transition-all duration-200 ease-in-out",
                   active
                     ? "bg-[#135CC8] text-white shadow-sm"
-                    : "text-[#0F172B] hover:bg-slate-200/70 hover:text-[#135CC8]"
+                    : "text-[#0F172B] hover:bg-slate-200/70 hover:text-[#135CC8]",
                 )}
                 aria-current={active ? "page" : undefined}
               >
                 <Icon
                   className={cn(
                     "w-4.5 h-4.5 shrink-0",
-                    active ? "text-white" : "text-[#667085]"
+                    active ? "text-white" : "text-[#667085]",
                   )}
                   strokeWidth={1.8}
                 />
@@ -138,7 +135,7 @@ export function Sidebar() {
           <button
             className={cn(
               "w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium",
-              "text-red-500 hover:bg-red-50 transition-all duration-200 ease-in-out"
+              "text-red-500 hover:bg-red-50 transition-all duration-200 ease-in-out",
             )}
             onClick={() => {
               /* TODO: wire up auth signout */
