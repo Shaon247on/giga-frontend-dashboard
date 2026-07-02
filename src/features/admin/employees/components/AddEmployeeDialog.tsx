@@ -85,7 +85,7 @@ export function AddEmployeeDialog() {
   return (
     <Dialog open={open} onOpenChange={handleDialogOpenChange}>
       <DialogTrigger asChild>
-        <Button className="shrink-0">
+        <Button size={"lg"} className="shrink-0">
           <Plus className="w-4 h-4 mr-2" />
           Add Employee
         </Button>

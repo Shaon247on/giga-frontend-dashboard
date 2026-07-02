@@ -87,7 +87,7 @@ export function GlobalFilter({
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent className="bg-white border-slate-200 rounded-xl shadow-lg">
-        {allOptions.map((opt) => (
+        {allOptions.map((opt, index) => (
           <SelectItem
             key={opt.value}
             value={opt.value}

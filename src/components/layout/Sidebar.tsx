@@ -1,18 +1,35 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/use-sidebar";
-import { MAIN_NAV, BOTTOM_NAV, SIGN_OUT_ITEM } from "@/constants/navigation";
+import {
+  BOTTOM_NAV,
+  SIGN_OUT_ITEM,
+  ROLE_NAV_MAP,
+  type UserRole,
+} from "@/constants/navigation";
 import { LogOut, X, Flame } from "lucide-react";
 
 export function Sidebar() {
   const pathname = usePathname();
   const { isOpen, close } = useSidebar();
 
+  // ── Temporary: Set current user role ──
+  // TODO: Replace with actual user from session
+  const [currentRole] = useState<UserRole>("admin");
+
+  // Get navigation items based on role
+  const navItems = ROLE_NAV_MAP[currentRole] || ROLE_NAV_MAP.supervisor;
+
   const isActive = (href: string) => {
-    if (href === "/dashboard") return pathname === "/dashboard";
+    // Exact match for dashboard routes
+    if (href === "/dashboard" || href === "/admin" || href === "/accounts" || href === "/employer") {
+      return pathname === href;
+    }
+    // For all other routes, check if pathname starts with the href
     return pathname.startsWith(href);
   };
 
@@ -45,7 +62,7 @@ export function Sidebar() {
       >
         {/* ── Logo / Brand ── */}
         <div className="flex items-center justify-between px-5 py-5 border-b border-slate-200/60">
-          <Link href="/dashboard" className="flex items-center gap-3 min-w-0">
+          <Link href={currentRole === "supervisor" ? "/dashboard" : `/${currentRole}`} className="flex items-center gap-3 min-w-0">
             {/* Logo mark */}
             <div className="shrink-0 w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center border border-slate-200/80">
               <Flame className="w-6 h-6 text-orange-500" strokeWidth={2} />
@@ -68,9 +85,20 @@ export function Sidebar() {
           </button>
         </div>
 
+        {/* ── Role Indicator ── */}
+        <div className="px-4 py-2 border-b border-slate-200/40">
+          <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-slate-100/70">
+            <span className="text-[10px] font-semibold text-secondary-txt uppercase tracking-wider">
+              {currentRole}
+            </span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-[10px] text-secondary-txt">Active</span>
+          </div>
+        </div>
+
         {/* ── Main Navigation ── */}
         <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-0.5">
-          {MAIN_NAV.map((item) => {
+          {navItems.map((item) => {
             const active = isActive(item.href);
             const Icon = item.icon;
             return (

@@ -1,12 +1,7 @@
-import { Suspense } from "react";
 import { OtpForm } from "@/features/auth";
 
 export default function VerifyOtpPage() {
-  return (
-    <Suspense>
-      <OtpForm />
-    </Suspense>
-  );
+  return <OtpForm />;
 }
 
 export const metadata = {

@@ -22,4 +22,26 @@ export type Status =
   | "flagged"
   | "open"
   | "in-progress"
-  | "completed";
+  | "completed"
+  | "maintenance"
+  | "paid"
+  | "submitted"
+  | "under-review";
+
+// ── Expense specific types ──
+export type ExpenseStatus = Extract<Status, "pending" | "reviewed" | "paid" | "submitted" | "under-review">;
+export type ExpenseType = "personal" | "visa" | "company";
+
+// ── Attendance specific types ──
+export type AttendanceStatus = Extract<Status, "active" | "reviewed" | "pending">;
+
+// ── Time Off specific types ──
+export type TimeOffStatus = Extract<Status, "pending" | "approved" | "rejected">;
+
+// ── Time Off Types ──
+export type TimeOffType = "vacation" | "sick" | "personal" | "other";
+
+// ── Filter types ──
+export type AttendanceFilter = "all" | AttendanceStatus;
+export type TimeOffFilter = "all" | TimeOffStatus;
+export type ExpenseFilter = "all" | ExpenseStatus;

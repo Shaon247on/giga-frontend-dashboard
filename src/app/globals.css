@@ -69,29 +69,33 @@
      ════════════════════════════════════ */
 
   /* Layout */
-  --color-dashboard:              var(--dashboard-bg);
-  --color-surface:                var(--surface);
+  --color-dashboard: var(--dashboard-bg);
+  --color-surface: var(--surface);
 
   /* Typography */
-  --color-primary-txt:            var(--primary-txt);
-  --color-secondary-txt:          var(--secondary-txt);
+  --color-primary-txt: var(--primary-txt);
+  --color-secondary-txt: var(--secondary-txt);
 
   /* Table */
-  --color-table-header:           var(--table-header-txt);
-  --color-table-header-bg:        var(--table-header-bg);
+  --color-table-header: var(--table-header-txt);
+  --color-table-header-bg: var(--table-header-bg);
 
   /* Buttons */
-  --color-btn-primary:            var(--btn-primary);
-  --color-btn-primary-txt:        var(--btn-primary-txt);
-  --color-btn-secondary:          var(--btn-secondary);
-  --color-btn-secondary-border:   var(--btn-secondary-border);
-  --color-btn-secondary-txt:      var(--btn-secondary-txt);
-  --color-btn-accept:             var(--btn-accept);
-  --color-btn-reject:             var(--btn-reject);
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-primary-txt: var(--btn-primary-txt);
+  --color-btn-secondary: var(--btn-secondary);
+  --color-btn-secondary-border: var(--btn-secondary-border);
+  --color-btn-secondary-txt: var(--btn-secondary-txt);
+  --color-btn-accept: var(--btn-accept);
+  --color-btn-reject: var(--btn-reject);
 
   /* Fonts */
-  --font-primary:                 var(--font-inter);
-  --font-secondary:               var(--font-open-sans);
+  --font-primary: var(--font-inter);
+  --font-secondary: var(--font-open-sans);
+
+  /* Skeleton */
+
+  --color-skeleton: var(--skeleton-base);
 }
 
 /* ════════════════════════════════════
@@ -131,21 +135,23 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --skeleton-base: #e2e8f0; /* on white cards */
+  --skeleton-highlight: #edf2f7; /* shimmer highlight */
 
   /* ── Design System ── */
-  --dashboard-bg:           #F6F8FB;
-  --surface:                #E2E8F0CC;
-  --primary-txt:            #0F172B;
-  --secondary-txt:          #667085;
-  --table-header-txt:       #90A1B9;
-  --table-header-bg:        #F8FAFC99;
-  --btn-primary:            #135CC8;
-  --btn-primary-txt:        #FFFFFF;
-  --btn-secondary:          #EFF6FF;
-  --btn-secondary-border:   #DBEAFE;
-  --btn-secondary-txt:      #155DFC;
-  --btn-accept:             #00C950;
-  --btn-reject:             #FB2C36;
+  --dashboard-bg: #f6f8fb;
+  --surface: #e2e8f0cc;
+  --primary-txt: #0f172b;
+  --secondary-txt: #667085;
+  --table-header-txt: #90a1b9;
+  --table-header-bg: #f8fafc99;
+  --btn-primary: #135cc8;
+  --btn-primary-txt: #ffffff;
+  --btn-secondary: #eff6ff;
+  --btn-secondary-border: #dbeafe;
+  --btn-secondary-txt: #155dfc;
+  --btn-accept: #00c950;
+  --btn-reject: #fb2c36;
 }
 
 .dark {
@@ -182,19 +188,19 @@
   --sidebar-ring: oklch(0.556 0 0);
 
   /* ── Design System dark overrides ── */
-  --dashboard-bg:           #0F1623;
-  --surface:                #1E2433CC;
-  --primary-txt:            #F1F5F9;
-  --secondary-txt:          #94A3B8;
-  --table-header-txt:       #64748B;
-  --table-header-bg:        #1E293B99;
-  --btn-primary:            #1D6FEB;
-  --btn-primary-txt:        #FFFFFF;
-  --btn-secondary:          #1E293B;
-  --btn-secondary-border:   #334155;
-  --btn-secondary-txt:      #60A5FA;
-  --btn-accept:             #00C950;
-  --btn-reject:             #FB2C36;
+  --dashboard-bg: #0f1623;
+  --surface: #1e2433cc;
+  --primary-txt: #f1f5f9;
+  --secondary-txt: #94a3b8;
+  --table-header-txt: #64748b;
+  --table-header-bg: #1e293b99;
+  --btn-primary: #1d6feb;
+  --btn-primary-txt: #ffffff;
+  --btn-secondary: #1e293b;
+  --btn-secondary-border: #334155;
+  --btn-secondary-txt: #60a5fa;
+  --btn-accept: #00c950;
+  --btn-reject: #fb2c36;
 }
 
 @layer base {

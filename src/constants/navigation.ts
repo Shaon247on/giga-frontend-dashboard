@@ -5,6 +5,13 @@ import {
   Wrench,
   Settings,
   LogOut,
+  Users,
+  DollarSign,
+  CreditCard,
+  FileText,
+  Eye,
+  Truck,
+  Shield,
   type LucideIcon,
 } from "lucide-react";
 
@@ -18,7 +25,8 @@ export interface NavSection {
   items: NavItem[];
 }
 
-export const MAIN_NAV: NavItem[] = [
+// ── Supervisor Navigation ──
+export const SUPERVISOR_NAV: NavItem[] = [
   {
     label: "Dashboard",
     href: "/dashboard",
@@ -41,6 +49,94 @@ export const MAIN_NAV: NavItem[] = [
   },
 ];
 
+// ── Admin Navigation ──
+export const ADMIN_NAV: NavItem[] = [
+  {
+    label: "Dashboard",
+    href: "/admin",
+    icon: LayoutDashboard,
+  },
+  {
+    label: "Employee Management",
+    href: "/admin/employees",
+    icon: Users,
+  },
+  {
+    label: "Vehicle Management",
+    href: "/admin/vehicles",
+    icon: Truck,
+  },
+  {
+    label: "Punch Card & Time Off",
+    href: "/admin/attendance",
+    icon: Clock,
+  },
+  {
+    label: "Expense Management",
+    href: "/admin/expenses",
+    icon: DollarSign,
+  },
+];
+
+// ── Accounts Navigation ──
+export const ACCOUNTS_NAV: NavItem[] = [
+  {
+    label: "Dashboard",
+    href: "/accounts",
+    icon: LayoutDashboard,
+  },
+  {
+    label: "Personal Expenses",
+    href: "/accounts/expenses",
+    icon: DollarSign,
+  },
+  {
+    label: "Visa / Company Card",
+    href: "/accounts/cards",
+    icon: CreditCard,
+  },
+  {
+    label: "Reports",
+    href: "/accounts/reports",
+    icon: FileText,
+  },
+];
+
+// ── Employer Navigation ──
+export const EMPLOYER_NAV: NavItem[] = [
+  {
+    label: "Dashboard",
+    href: "/employer",
+    icon: LayoutDashboard,
+  },
+  {
+    label: "Overview",
+    href: "/employer/overview",
+    icon: Eye,
+  },
+  {
+    label: "Vehicle Reports",
+    href: "/employer/vehicle-reports",
+    icon: Truck,
+  },
+  {
+    label: "Punch & Time Off Reports",
+    href: "/employer/punch-reports",
+    icon: Clock,
+  },
+  {
+    label: "Expense Reports",
+    href: "/employer/expense-reports",
+    icon: DollarSign,
+  },
+  {
+    label: "Control",
+    href: "/employer/control",
+    icon: Shield,
+  },
+];
+
+// ── Bottom Navigation (shared across all roles) ──
 export const BOTTOM_NAV: NavItem[] = [
   {
     label: "Settings",
@@ -53,3 +149,16 @@ export const SIGN_OUT_ITEM = {
   label: "Sign Out",
   icon: LogOut,
 };
+
+// ── For backward compatibility ──
+export const MAIN_NAV = SUPERVISOR_NAV;
+
+// ── Role to Navigation mapping ──
+export const ROLE_NAV_MAP: Record<string, NavItem[]> = {
+  supervisor: SUPERVISOR_NAV,
+  admin: ADMIN_NAV,
+  accounts: ACCOUNTS_NAV,
+  employer: EMPLOYER_NAV,
+};
+
+export type UserRole = "supervisor" | "admin" | "accounts" | "employer";

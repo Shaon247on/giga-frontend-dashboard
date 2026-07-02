@@ -1,19 +1,21 @@
 import { cn } from "@/lib/utils";
 import type { Status } from "@/types";
 
-const STATUS_STYLES: Record<
-  Status,
-  { label: string; classes: string; dot: string }
-> = {
+const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: string }> = {
   active: {
     label: "Active",
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
     dot: "bg-emerald-500",
   },
   inactive: {
-    label: "Active",
-    classes: "bg-gray-50 text-gray-600 border-gray-200",
-    dot: "bg-gray-500",
+    label: "Inactive",
+    classes: "bg-slate-50 text-slate-600 border-slate-200",
+    dot: "bg-slate-400",
+  },
+  maintenance: {
+    label: "Maintenance",
+    classes: "bg-orange-50 text-orange-600 border-orange-200",
+    dot: "bg-orange-400",
   },
   reviewed: {
     label: "Reviewed",
@@ -42,18 +44,33 @@ const STATUS_STYLES: Record<
   },
   open: {
     label: "Open",
-    classes: "bg-orange-50 text-orange-600 border-orange-200",
-    dot: "bg-orange-400",
+    classes: "bg-blue-50 text-blue-600 border-blue-200",
+    dot: "bg-blue-500",
   },
   "in-progress": {
     label: "In Progress",
-    classes: "bg-blue-50 text-blue-600 border-blue-200",
-    dot: "bg-blue-500",
+    classes: "bg-amber-50 text-amber-600 border-amber-200",
+    dot: "bg-amber-400",
   },
   completed: {
     label: "Completed",
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
     dot: "bg-emerald-500",
+  },
+  paid: {
+    label: "Paid",
+    classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
+    dot: "bg-emerald-500",
+  },
+  submitted: {
+    label: "Submitted",
+    classes: "bg-blue-50 text-blue-600 border-blue-200",
+    dot: "bg-blue-500",
+  },
+  "under-review": {
+    label: "Under Review",
+    classes: "bg-amber-50 text-amber-600 border-amber-200",
+    dot: "bg-amber-400",
   },
 };
 
@@ -70,13 +87,10 @@ export function StatusBadge({ status, className }: StatusBadgeProps) {
       className={cn(
         "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border",
         config.classes,
-        className,
+        className
       )}
     >
-      <span
-        className={cn("w-1.5 h-1.5 rounded-full", config.dot)}
-        aria-hidden="true"
-      />
+      <span className={cn("w-1.5 h-1.5 rounded-full", config.dot)} aria-hidden="true" />
       {config.label}
     </span>
   );

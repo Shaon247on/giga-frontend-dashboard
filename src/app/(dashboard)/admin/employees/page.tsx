@@ -65,24 +65,26 @@ async function EmployeesContent({ searchParams }: EmployeesPageProps) {
             Manage employees, assign roles, and oversee profiles
           </p>
         </div>
-        <AddEmployeeDialog />
       </div>
 
       {/* Search and Filter Bar */}
-      <div className="flex flex-col sm:flex-row gap-4">
-        <GlobalSearch
-          name="search"
-          placeholder="Search employees..."
-          className="flex-1 max-w-sm"
-          debounceMs={300}
-        />
-        <GlobalFilter
-          name="role"
-          placeholder="All Roles"
-          options={roleOptions}
-          className="w-45"
-          defaultValue="all"
-        />
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <GlobalSearch
+            name="search"
+            placeholder="Search employees..."
+            className="flex-1 max-w-sm"
+            debounceMs={300}
+          />
+          <GlobalFilter
+            name="role"
+            placeholder="All Roles"
+            options={roleOptions}
+            className="w-45"
+            defaultValue="all"
+          />
+        </div>
+        <AddEmployeeDialog />
       </div>
 
       {/* Table with Suspense */}
