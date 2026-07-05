@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useSidebar } from "@/hooks/use-sidebar";
 import {
-  BOTTOM_NAV,
   SIGN_OUT_ITEM,
   ROLE_NAV_MAP,
   type UserRole,
+  ROLE_BOTTOM_NAV_MAP,
 } from "@/constants/navigation";
 import { LogOut, X, Flame } from "lucide-react";
 
@@ -19,10 +19,11 @@ export function Sidebar() {
 
   // ── Temporary: Set current user role ──
   // TODO: Replace with actual user from session
-  const [currentRole] = useState<UserRole>("admin");
+  const [currentRole] = useState<UserRole>("employer");
 
   // Get navigation items based on role
-  const navItems = ROLE_NAV_MAP[currentRole] || ROLE_NAV_MAP.supervisor;
+  const navItems = ROLE_NAV_MAP[currentRole] || ROLE_NAV_MAP.admin;
+  const navItemsBottom = ROLE_BOTTOM_NAV_MAP[currentRole] || ROLE_BOTTOM_NAV_MAP.admin;
 
   const isActive = (href: string) => {
     // Exact match for dashboard routes
@@ -130,7 +131,7 @@ export function Sidebar() {
 
         {/* ── Bottom: Settings + Sign Out ── */}
         <div className="px-3 pb-5 border-t border-slate-200/60 pt-3 space-y-0.5">
-          {BOTTOM_NAV.map((item) => {
+          {navItemsBottom.map((item) => {
             const active = isActive(item.href);
             const Icon = item.icon;
             return (

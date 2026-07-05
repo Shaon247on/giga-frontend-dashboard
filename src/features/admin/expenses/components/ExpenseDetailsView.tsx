@@ -39,7 +39,7 @@ export function ExpenseDetailsView({ data }: ExpenseDetailsViewProps) {
   const typeLabel = expense.type === "personal" ? "Personal Expense" : "Visa / Company Card";
 
   return (
-    <div className="p-6 lg:p-8 max-w-6xl mx-auto space-y-6">
+    <div className="p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
       {/* Back Button */}
       <button
         onClick={handleBack}

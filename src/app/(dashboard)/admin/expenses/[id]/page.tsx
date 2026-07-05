@@ -12,7 +12,7 @@ interface ExpenseDetailsPageProps {
 
 function ExpenseDetailsSkeleton() {
   return (
-    <div className="p-6 lg:p-8 max-w-6xl mx-auto space-y-6">
+    <div className="p-6 lg:p-8 max-w-7xl mx-auto space-y-6">
       <Skeleton className="h-4 w-32 rounded" />
       <div className="flex items-start justify-between">
         <div>

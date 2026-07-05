@@ -72,6 +72,11 @@ const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: strin
     classes: "bg-amber-50 text-amber-600 border-amber-200",
     dot: "bg-amber-400",
   },
+  reimbursed: {
+    label: "Reimbursed",
+    classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
+    dot: "bg-emerald-500",
+  },
 };
 
 interface StatusBadgeProps {

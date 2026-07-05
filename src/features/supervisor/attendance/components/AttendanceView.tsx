@@ -22,7 +22,7 @@ export function AttendanceView({ data, activeFilter, selectedId }: AttendanceVie
   });
 
   return (
-    <div className="p-6 lg:p-8 max-w-6xl mx-auto space-y-5">
+    <div className="p-6 lg:p-8 max-w-7xl mx-auto space-y-5">
       {/* Heading */}
       <div>
         <h1 className="text-2xl font-bold text-[#0F172B] leading-tight">

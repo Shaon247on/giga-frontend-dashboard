@@ -18,7 +18,7 @@ interface AttendancePageProps {
 
 async function AttendanceContent({ searchParams }: AttendancePageProps) {
   const sp = await searchParams;
-  const page = parseInt(sp?.page || "1", 10);
+  const page = parseInt(sp?.page || "1", 10); 
 
   const data = await fetchAttendancePageData();
 

@@ -21,7 +21,7 @@ export function TimeOffView({ data, activeFilter }: TimeOffViewProps) {
   });
 
   return (
-    <div className="p-6 lg:p-8 space-y-5 max-w-6xl mx-auto">
+    <div className="p-6 lg:p-8 space-y-5 max-w-7xl mx-auto">
       {/* Heading */}
       <div>
         <h1 className="text-2xl font-bold text-primary-txt leading-tight">Time Off Review</h1>

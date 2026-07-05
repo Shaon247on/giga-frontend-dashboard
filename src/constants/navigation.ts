@@ -92,7 +92,7 @@ export const ACCOUNTS_NAV: NavItem[] = [
   },
   {
     label: "Visa / Company Card",
-    href: "/accounts/cards",
+    href: "/accounts/visa",
     icon: CreditCard,
   },
   {
@@ -137,10 +137,31 @@ export const EMPLOYER_NAV: NavItem[] = [
 ];
 
 // ── Bottom Navigation (shared across all roles) ──
-export const BOTTOM_NAV: NavItem[] = [
+export const BOTTOM_NAV_SUPERVISOR: NavItem[] = [
   {
     label: "Settings",
     href: "/dashboard/settings",
+    icon: Settings,
+  },
+];
+export const BOTTOM_NAV_ADMIN: NavItem[] = [
+  {
+    label: "Settings",
+    href: "/admin/settings",
+    icon: Settings,
+  },
+];
+export const BOTTOM_NAV_ACCOUNTS: NavItem[] = [
+  {
+    label: "Settings",
+    href: "/accounts/settings",
+    icon: Settings,
+  },
+];
+export const BOTTOM_NAV_EMPLOYER: NavItem[] = [
+  {
+    label: "Settings",
+    href: "/employer/settings",
     icon: Settings,
   },
 ];
@@ -159,6 +180,12 @@ export const ROLE_NAV_MAP: Record<string, NavItem[]> = {
   admin: ADMIN_NAV,
   accounts: ACCOUNTS_NAV,
   employer: EMPLOYER_NAV,
+};
+export const ROLE_BOTTOM_NAV_MAP: Record<string, NavItem[]> = {
+  supervisor: BOTTOM_NAV_SUPERVISOR,
+  admin: BOTTOM_NAV_ADMIN,
+  accounts: BOTTOM_NAV_ACCOUNTS,
+  employer: BOTTOM_NAV_EMPLOYER,
 };
 
 export type UserRole = "supervisor" | "admin" | "accounts" | "employer";
