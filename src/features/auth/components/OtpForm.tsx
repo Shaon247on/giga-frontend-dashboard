@@ -109,11 +109,23 @@ export function OtpForm() {
   );
 
   const handleResend = async () => {
-    if (!email) return;
+  if (!email) return;
+
+  setServerError(null);
+
+  try {
     await sendOtp({ email });
     setResent(true);
-    setTimeout(() => setResent(false), 5000);
-  };
+
+    setTimeout(() => {
+      setResent(false);
+    }, 5000);
+  } catch (err) {
+    setServerError(
+      err instanceof Error ? err.message : "Failed to resend code."
+    );
+  }
+};
 
   const otpString = digits.join("");
 
