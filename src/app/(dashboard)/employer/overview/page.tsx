@@ -1,11 +1,23 @@
-import React from 'react'
+import { Suspense } from "react";
+import {
+  OverviewView,
+  OverviewSkeleton,
+  fetchOverviewData,
+} from "@/features/employer/overview";
 
-function page() {
-  return (
-    <div>
-      
-    </div>
-  )
+async function OverviewContent() {
+  const data = await fetchOverviewData();
+  return <OverviewView data={data} />;
 }
 
-export default page
+export default function OverviewPage() {
+  return (
+    <Suspense fallback={<OverviewSkeleton />}>
+      <OverviewContent />
+    </Suspense>
+  );
+}
+
+export const metadata = {
+  title: "Overview",
+};

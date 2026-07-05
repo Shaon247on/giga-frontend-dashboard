@@ -1,5 +1,7 @@
 import type { Status } from "@/types";
 
+export type VehicleStatus = Extract<Status, "active" | "inactive" | "maintenance">;
+export type RepairStatus = Extract<Status, "open" | "in-progress" | "completed">;
 
 export interface Vehicle {
   id: string;
@@ -13,7 +15,7 @@ export interface Vehicle {
   lastOilChangeMileage: number;
   insuranceExpiry: string;
   assignedDriver: string;
-  status: Status; // Uses global Status type
+  status: VehicleStatus;
   driverInitials: string;
   driverColor: string;
 }
@@ -46,7 +48,7 @@ export interface RepairRequest {
   requesterInitials: string;
   requesterColor: string;
   requestDate: string;
-  status: Status;
+  status: RepairStatus;
 }
 
 export interface OilChangeRecord {
@@ -81,5 +83,5 @@ export interface CreateVehicleData {
 
 export interface UpdateVehicleData extends Partial<CreateVehicleData> {
   id: string;
-  status?: Status;
+  status?: VehicleStatus;
 }

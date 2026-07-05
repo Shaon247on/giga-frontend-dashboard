@@ -1,4 +1,4 @@
-import { CheckCircle, Circle, Clock, AlertCircle } from "lucide-react";
+import { CheckCircle, Circle, Clock, AlertCircle, XCircle, Receipt } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { ExpenseStatus } from "@/types";
 
@@ -14,12 +14,42 @@ interface StatusTimelineProps {
   timeline: TimelineItem[];
 }
 
-const STATUS_ICONS = {
-  submitted: { icon: Circle, color: "text-blue-500", bg: "bg-blue-50" },
-  "under-review": { icon: Clock, color: "text-amber-500", bg: "bg-amber-50" },
-  reviewed: { icon: CheckCircle, color: "text-emerald-500", bg: "bg-emerald-50" },
-  paid: { icon: CheckCircle, color: "text-emerald-600", bg: "bg-emerald-50" },
-  pending: { icon: AlertCircle, color: "text-amber-500", bg: "bg-amber-50" },
+const STATUS_ICONS: Record<ExpenseStatus, { icon: React.ElementType; color: string; bg: string }> = {
+  submitted: { 
+    icon: Circle, 
+    color: "text-blue-500", 
+    bg: "bg-blue-50" 
+  },
+  "under-review": { 
+    icon: Clock, 
+    color: "text-amber-500", 
+    bg: "bg-amber-50" 
+  },
+  reviewed: { 
+    icon: CheckCircle, 
+    color: "text-emerald-500", 
+    bg: "bg-emerald-50" 
+  },
+  paid: { 
+    icon: CheckCircle, 
+    color: "text-emerald-600", 
+    bg: "bg-emerald-50" 
+  },
+  pending: { 
+    icon: AlertCircle, 
+    color: "text-amber-500", 
+    bg: "bg-amber-50" 
+  },
+  rejected: { 
+    icon: XCircle, 
+    color: "text-red-500", 
+    bg: "bg-red-50" 
+  },
+  reimbursed: { 
+    icon: Receipt, 
+    color: "text-emerald-600", 
+    bg: "bg-emerald-50" 
+  },
 };
 
 export function StatusTimeline({ timeline }: StatusTimelineProps) {

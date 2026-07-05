@@ -1,6 +1,7 @@
 import { OtpForm } from "@/features/auth";
-
-export default function VerifyOtpPage() {
+import { connection } from "next/server";
+export default async function VerifyOtpPage() {
+  await connection();
   return <OtpForm />;
 }
 

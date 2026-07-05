@@ -1,11 +1,23 @@
-import React from 'react'
+import { Suspense } from "react";
+import {
+  ControlView,
+  ControlSkeleton,
+  fetchControlData,
+} from "@/features/employer/control";
 
-function page() {
-  return (
-    <div>
-      
-    </div>
-  )
+async function ControlContent() {
+  const data = await fetchControlData();
+  return <ControlView data={data} />;
 }
 
-export default page
+export default function ControlPage() {
+  return (
+    <Suspense fallback={<ControlSkeleton />}>
+      <ControlContent />
+    </Suspense>
+  );
+}
+
+export const metadata = {
+  title: "Control System",
+};

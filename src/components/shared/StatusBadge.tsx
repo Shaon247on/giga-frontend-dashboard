@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import type { Status } from "@/types";
 
 const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: string }> = {
+  // ── General ──
   active: {
     label: "Active",
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
@@ -12,11 +13,8 @@ const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: strin
     classes: "bg-slate-50 text-slate-600 border-slate-200",
     dot: "bg-slate-400",
   },
-  maintenance: {
-    label: "Maintenance",
-    classes: "bg-orange-50 text-orange-600 border-orange-200",
-    dot: "bg-orange-400",
-  },
+
+  // ── Review States ──
   reviewed: {
     label: "Reviewed",
     classes: "bg-blue-50 text-blue-600 border-blue-200",
@@ -42,6 +40,8 @@ const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: strin
     classes: "bg-orange-50 text-orange-600 border-orange-200",
     dot: "bg-orange-400",
   },
+
+  // ── Progress States ──
   open: {
     label: "Open",
     classes: "bg-blue-50 text-blue-600 border-blue-200",
@@ -57,6 +57,15 @@ const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: strin
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
     dot: "bg-emerald-500",
   },
+
+  // ── Vehicle ──
+  maintenance: {
+    label: "Maintenance",
+    classes: "bg-orange-50 text-orange-600 border-orange-200",
+    dot: "bg-orange-400",
+  },
+
+  // ── Expense ──
   paid: {
     label: "Paid",
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
@@ -77,6 +86,13 @@ const STATUS_STYLES: Record<Status, { label: string; classes: string; dot: strin
     classes: "bg-emerald-50 text-emerald-600 border-emerald-200",
     dot: "bg-emerald-500",
   },
+
+  // ── Time Off ──
+  denied: {
+    label: "Denied",
+    classes: "bg-red-50 text-red-600 border-red-200",
+    dot: "bg-red-500",
+  },
 };
 
 interface StatusBadgeProps {
@@ -86,6 +102,22 @@ interface StatusBadgeProps {
 
 export function StatusBadge({ status, className }: StatusBadgeProps) {
   const config = STATUS_STYLES[status];
+
+  // Fallback for unknown status
+  if (!config) {
+    return (
+      <span
+        className={cn(
+          "inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border",
+          "bg-slate-50 text-slate-600 border-slate-200",
+          className
+        )}
+      >
+        <span className="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true" />
+        {status}
+      </span>
+    );
+  }
 
   return (
     <span

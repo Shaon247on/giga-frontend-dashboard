@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,27 +21,37 @@ export function OtpForm() {
   const [digits, setDigits] = useState<string[]>(Array(OTP_LENGTH).fill(""));
   const [serverError, setServerError] = useState<string | null>(null);
   const [resent, setResent] = useState(false);
-  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  
+  // Create refs using useRef with an array
+  const inputRefs = useRef<HTMLInputElement[]>([]);
 
   const {
     handleSubmit,
     setValue,
+    reset,
     formState: { isSubmitting },
   } = useForm<VerifyOtpFormValues>({
     resolver: zodResolver(verifyOtpSchema),
     defaultValues: { otp: "" },
   });
 
+  // Focus the first input on mount
+  useEffect(() => {
+    inputRefs.current[0]?.focus();
+  }, []);
+
   const updateDigit = useCallback(
     (index: number, value: string) => {
       const updated = [...digits];
-      updated[index] = value.slice(-1); // only last char
+      updated[index] = value.slice(-1);
       setDigits(updated);
       setValue("otp", updated.join(""));
 
-      // Auto-advance
       if (value && index < OTP_LENGTH - 1) {
-        inputRefs.current[index + 1]?.focus();
+        const nextInput = inputRefs.current[index + 1];
+        if (nextInput) {
+          nextInput.focus();
+        }
       }
     },
     [digits, setValue]
@@ -50,7 +60,10 @@ export function OtpForm() {
   const handleKeyDown = useCallback(
     (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Backspace" && !digits[index] && index > 0) {
-        inputRefs.current[index - 1]?.focus();
+        const prevInput = inputRefs.current[index - 1];
+        if (prevInput) {
+          prevInput.focus();
+        }
       }
     },
     [digits]
@@ -65,25 +78,35 @@ export function OtpForm() {
       pasted.split("").forEach((ch, i) => { updated[i] = ch; });
       setDigits(updated);
       setValue("otp", updated.join(""));
-      // Focus the next empty or last input
       const nextEmpty = updated.findIndex((d) => !d);
-      inputRefs.current[nextEmpty === -1 ? OTP_LENGTH - 1 : nextEmpty]?.focus();
+      const focusIndex = nextEmpty === -1 ? OTP_LENGTH - 1 : nextEmpty;
+      const inputToFocus = inputRefs.current[focusIndex];
+      if (inputToFocus) {
+        inputToFocus.focus();
+      }
     },
     [setValue]
   );
 
-  const onSubmit = async (values: VerifyOtpFormValues) => {
-    setServerError(null);
-    try {
-      await verifyOtp(values);
-      router.push(`/reset-password?email=${encodeURIComponent(email)}`);
-    } catch (err) {
-      setServerError(err instanceof Error ? err.message : "Verification failed.");
-      setDigits(Array(OTP_LENGTH).fill(""));
-      setValue("otp", "");
-      inputRefs.current[0]?.focus();
-    }
-  };
+  const onSubmit = useCallback(
+    async (values: VerifyOtpFormValues) => {
+      setServerError(null);
+      try {
+        await verifyOtp(values);
+        router.push(`/reset-password?email=${encodeURIComponent(email)}`);
+      } catch (err) {
+        setServerError(err instanceof Error ? err.message : "Verification failed.");
+        setDigits(Array(OTP_LENGTH).fill(""));
+        setValue("otp", "");
+        reset({ otp: "" });
+        // Focus the first input after a short delay
+        setTimeout(() => {
+          inputRefs.current[0]?.focus();
+        }, 100);
+      }
+    },
+    [email, router, setValue, reset]
+  );
 
   const handleResend = async () => {
     if (!email) return;
@@ -91,6 +114,8 @@ export function OtpForm() {
     setResent(true);
     setTimeout(() => setResent(false), 5000);
   };
+
+  const otpString = digits.join("");
 
   return (
     <>
@@ -122,7 +147,11 @@ export function OtpForm() {
             {Array.from({ length: OTP_LENGTH }).map((_, i) => (
               <input
                 key={i}
-                ref={(el) => { inputRefs.current[i] = el; }}
+                ref={(el) => {
+                  if (el) {
+                    inputRefs.current[i] = el;
+                  }
+                }}
                 type="text"
                 inputMode="numeric"
                 maxLength={1}
@@ -147,7 +176,7 @@ export function OtpForm() {
 
         <button
           type="submit"
-          disabled={isSubmitting || digits.join("").length < OTP_LENGTH}
+          disabled={isSubmitting || otpString.length < OTP_LENGTH}
           className={cn(
             "w-full flex items-center justify-center gap-2 py-3.5 rounded-xl",
             "bg-btn-primary text-white font-semibold text-[15px]",
