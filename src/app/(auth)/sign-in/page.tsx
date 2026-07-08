@@ -1,7 +1,13 @@
+import { RoleQuickLogin } from "@/components/auth/RoleQuickLogin";
 import { SignInForm } from "@/features/auth";
 
 export default function SignInPage() {
-  return <SignInForm />;
+  return (
+    <div>
+      <SignInForm />
+      <RoleQuickLogin />
+    </div>
+  );
 }
 
 export const metadata = {

@@ -12,18 +12,23 @@ import {
   ROLE_BOTTOM_NAV_MAP,
 } from "@/constants/navigation";
 import { LogOut, X, Flame } from "lucide-react";
+import { useRole } from "@/hooks/useRole";
 
 export function Sidebar() {
   const pathname = usePathname();
   const { isOpen, close } = useSidebar();
-
+const { role } = useRole();
   // ── Temporary: Set current user role ──
   // TODO: Replace with actual user from session
-  const [currentRole] = useState<UserRole>("employer");
+  // const [currentRole] = useState<UserRole>("admin");
+
+  console.log("role:",role)
+
+  if(role === null) return
 
   // Get navigation items based on role
-  const navItems = ROLE_NAV_MAP[currentRole] || ROLE_NAV_MAP.admin;
-  const navItemsBottom = ROLE_BOTTOM_NAV_MAP[currentRole] || ROLE_BOTTOM_NAV_MAP.admin;
+  const navItems = ROLE_NAV_MAP[role] || ROLE_NAV_MAP.admin;
+  const navItemsBottom = ROLE_BOTTOM_NAV_MAP[role] || ROLE_BOTTOM_NAV_MAP.admin;
 
   const isActive = (href: string) => {
     // Exact match for dashboard routes
@@ -63,7 +68,7 @@ export function Sidebar() {
       >
         {/* ── Logo / Brand ── */}
         <div className="flex items-center justify-between px-5 py-5 border-b border-slate-200/60">
-          <Link href={currentRole === "supervisor" ? "/dashboard" : `/${currentRole}`} className="flex items-center gap-3 min-w-0">
+          <Link href={role === "supervisor" ? "/dashboard" : `/${role}`} className="flex items-center gap-3 min-w-0">
             {/* Logo mark */}
             <div className="shrink-0 w-11 h-11 rounded-xl bg-white shadow-sm flex items-center justify-center border border-slate-200/80">
               <Flame className="w-6 h-6 text-orange-500" strokeWidth={2} />
@@ -90,7 +95,7 @@ export function Sidebar() {
         <div className="px-4 py-2 border-b border-slate-200/40">
           <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg bg-slate-100/70">
             <span className="text-[10px] font-semibold text-secondary-txt uppercase tracking-wider">
-              {currentRole}
+              {role}
             </span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
             <span className="text-[10px] text-secondary-txt">Active</span>

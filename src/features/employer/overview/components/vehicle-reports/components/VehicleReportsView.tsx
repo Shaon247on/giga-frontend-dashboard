@@ -22,7 +22,6 @@ export function VehicleReportsView({ data, currentPage }: VehicleReportsViewProp
   const statusFilter = searchParams.get("status") || "all";
 
   const statusOptions: SelectOption[] = [
-    { value: "all", label: "All" },
     { value: "open", label: "Open" },
     { value: "in-progress", label: "In Progress" },
     { value: "completed", label: "Completed" },
