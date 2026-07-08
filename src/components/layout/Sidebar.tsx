@@ -166,18 +166,17 @@ const { role } = useRole();
           })}
 
           {/* Sign Out */}
-          <button
+          {/* <button
             className={cn(
               "w-full flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium",
               "text-red-500 hover:bg-red-50 transition-all duration-200 ease-in-out",
             )}
             onClick={() => {
-              /* TODO: wire up auth signout */
             }}
           >
             <LogOut className="w-4.5 h-4.5 shrink-0" strokeWidth={1.8} />
             <span>{SIGN_OUT_ITEM.label}</span>
-          </button>
+          </button> */}
         </div>
       </aside>
     </>
